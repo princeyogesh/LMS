@@ -1,0 +1,9 @@
+.login-main{
+    margin-top: 10%;
+    }
+    mat-card{
+    min-width: 30%;
+    align-self: center;
+    align-content: center;
+    background: #a178af;
+    }
