@@ -19,7 +19,7 @@ import { InstructorComponent } from './instructor/instructor.component';
 import { AdminComponent } from './admin/admin.component';
 import { LearnerComponent } from './learner/learner.component';
 import { RouterModule, Routes } from '@angular/router';
-
+//import {RouterModule.forRoot([], { enableTracing: true })}
 
 const routes: Routes = [
   { path: 'home', component:  HomeComponent},
@@ -50,7 +50,7 @@ const routes: Routes = [
     MatCardModule,
     MatFormFieldModule,
     FlexLayoutModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, { enableTracing: true })
   ],
   providers: [],
   bootstrap: [AppComponent]
