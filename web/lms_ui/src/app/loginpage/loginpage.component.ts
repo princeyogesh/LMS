@@ -20,10 +20,11 @@ export class LoginpageComponent {
     this.userEmail    = (document.getElementById(this.userEnailId) as HTMLInputElement).value;
     this.userPassword = (document.getElementById(this.userPasswordId) as HTMLInputElement).value;
     console.log("userEmail is "+ this.userEmail);
-    if(validation(this.userEmail, this.userPassword) == true)   //check if validation is successful
+    let [validated, userrole] = validation(this.userEmail, this.userPassword)
+    if(validated == true)   //check if validation is successful
     {
       //loadthehomepageforuser = true;
-      this.showProfileforeventNameeventNameUser(this.userEmail);
+      this.showProfileforeventNameeventNameUser(this.userEmail, userrole);
     }
     else{
       alert("please retry login");
@@ -42,19 +43,25 @@ export class LoginpageComponent {
    
   }
 
-    showProfileforeventNameeventNameUser(userEmail: any) {
+    showProfileforeventNameeventNameUser(userEmail: any, userrole: boolean | string) {
       this.hideLoginbutton();
       this.hideloginPage();
-      this.router.navigate(["profile"],  { queryParams: { role: "admin" } })   //we need to add profile id here to seprately load profiles
+      this.router.navigate(["profile"],  { queryParams: { role: userrole } })   //we need to add profile id here to seprately load profiles
   }
 }
+
+//this returns if validation is successfull or not and if successfull what is role
 function validation(userEmail: any, userPassword: any) {
 
   //Need to complete validation method with DB currently using static with yogesh user
   if(userEmail == "yogesh")
-    return true;
+    return [true, "admin"];
+  else if(userEmail == "omkesh")
+    return [true, "instructor"];
+  else if(userEmail == "nikam")
+    return [true, "learner"];
 
-  return false;
+  return [false, "invalid"];
 }
 
 
