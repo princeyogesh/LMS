@@ -19,12 +19,17 @@ import { InstructorComponent } from './instructor/instructor.component';
 import { AdminComponent } from './admin/admin.component';
 import { LearnerComponent } from './learner/learner.component';
 import { RouterModule, Routes } from '@angular/router';
-//import {RouterModule.forRoot([], { enableTracing: true })}
+import {MatTabsModule} from '@angular/material/tabs';
+import { NavTabseComponent } from './navtabs/navtabs.component';
+
 
 const routes: Routes = [
   { path: 'home', component:  HomeComponent},
   { path: 'profile', component: ProfileComponent },
-  { path: 'login', component:LoginpageComponent}
+  { path: 'login', component:LoginpageComponent},
+  { path: 'instructor', component:InstructorComponent},
+  { path: 'admin', component:AdminComponent},
+  { path: 'learner', component:LearnerComponent}
 ];
 
 @NgModule({
@@ -37,7 +42,8 @@ const routes: Routes = [
     ProfileComponent,
     InstructorComponent,
     AdminComponent,
-    LearnerComponent
+    LearnerComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -49,8 +55,10 @@ const routes: Routes = [
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
+    MatTabsModule,
     FlexLayoutModule,
-    RouterModule.forRoot(routes, { enableTracing: true })
+    RouterModule.forRoot(routes, { enableTracing: true }),
+    NavTabseComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

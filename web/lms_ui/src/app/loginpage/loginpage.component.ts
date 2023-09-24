@@ -46,7 +46,7 @@ export class LoginpageComponent {
     showProfileforeventNameeventNameUser(userEmail: any, userrole: boolean | string) {
       this.hideLoginbutton();
       this.hideloginPage();
-      this.router.navigate(["profile"],  { queryParams: { role: userrole } })   //we need to add profile id here to seprately load profiles
+      this.router.navigate([userrole],  { queryParams: { role: userrole } })   //we need to add profile id here to seprately load profiles
   }
 }
 
