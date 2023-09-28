@@ -21,6 +21,7 @@ import { LearnerComponent } from './learner/learner.component';
 import { RouterModule, Routes } from '@angular/router';
 import {MatTabsModule} from '@angular/material/tabs';
 import { NavTabseComponent } from './navtabs/navtabs.component';
+import { CoursetableComponent } from './navtabs/coursetable/coursetable.component';
 
 
 const routes: Routes = [
@@ -44,6 +45,7 @@ const routes: Routes = [
     AdminComponent,
     LearnerComponent,
     
+    
   ],
   imports: [
     BrowserModule,
@@ -58,7 +60,8 @@ const routes: Routes = [
     MatTabsModule,
     FlexLayoutModule,
     RouterModule.forRoot(routes, { enableTracing: true }),
-    NavTabseComponent
+    NavTabseComponent,
+    CoursetableComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
