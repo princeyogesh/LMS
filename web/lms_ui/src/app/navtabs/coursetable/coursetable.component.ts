@@ -12,9 +12,10 @@ export interface PeriodicElement {
   academic_year: number;
   batchstrength: number;
 }
-
+//ELENEBT_DATA is static data we need to change this
+//and pull data from db for each user ID
 const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, course_name: 'Hydrogen', start_date:new Date(2017, 4, 4, 17, 23, 42, 11), academic_year: 2021, batchstrength:50},
+  {position: 1, course_name: 'Hydrogen', start_date:new Date(2017, 4, 4), academic_year: 2021, batchstrength:50},
   {position: 2, course_name: 'Helium',start_date:new Date(2017, 4, 4, 17, 23, 42, 11), academic_year: 2021, batchstrength:50},
   {position: 3, course_name: 'Lithium', start_date:new Date(2017, 4, 4, 17, 23, 42, 11), academic_year: 2021, batchstrength:50},
   {position: 4, course_name: 'Beryllium', start_date:new Date(2017, 4, 4, 17, 23, 42, 11), academic_year: 2021, batchstrength:50},
@@ -40,25 +41,24 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 
 export class CoursetableComponent implements OnInit{
-  userID: number = 0; //key to display courses of respective user
-  
+  userID: string | null = "NULL"; //key to display courses of respective user
+  dataSource: any; dataToDisplay: any; displayedColumns!: string[];
   constructor(private route: ActivatedRoute) { }
   ngOnInit() {
-    this.route.queryParams
-      .subscribe(params => {
-        this.userID = params['userID']; 
-      }
-    );
+
+    this.userID = this.route.snapshot.queryParamMap.get('userID');
+    this.displayedColumns = ['position', 'course_name', 'start_date', 'academic_year', 'batchstrength'];
+    this.dataToDisplay = this.getDataforUser(this.userID);  //34 is just static number given 
+                                                       //need to fetch this ID from url queryparam
+  
+    this.dataSource = new ExampleDataSource(this.dataToDisplay);
+    
   }
 
 
-  displayedColumns: string[] = ['position', 'course_name', 'start_date', 'academic_year', 'batchstrength'];
-  dataToDisplay = this.getDataforUser(this.userID);  //34 is just static number given 
-                                                     //need to fetch this ID from url queryparam
 
-  dataSource = new ExampleDataSource(this.dataToDisplay);
-  getDataforUser(userID: number){
-      console.log("getting data for User with userID" + userID)
+  getDataforUser(userID: string | any){
+      console.log("getting data for User with userID --> " + userID)
       //you actually need to go DB and fetch the data up for perticular instructor
       //as of now just returning static data
       return [...ELEMENT_DATA]
