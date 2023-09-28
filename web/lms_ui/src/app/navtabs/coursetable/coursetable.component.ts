@@ -1,8 +1,9 @@
-import {Component} from '@angular/core';
+import {Component, OnInit, ɵpublishDefaultGlobalUtils} from '@angular/core';
 import {DataSource} from '@angular/cdk/collections';
 import {Observable, ReplaySubject} from 'rxjs';
 import {MatTableModule} from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button';
+import { ActivatedRoute } from '@angular/router';
 
 export interface PeriodicElement {
   position: number;
@@ -35,12 +36,33 @@ const ELEMENT_DATA: PeriodicElement[] = [
   standalone: true,
   imports: [MatButtonModule, MatTableModule],
 })
-export class CoursetableComponent {
+
+
+
+export class CoursetableComponent implements OnInit{
+  userID: number = 0; //key to display courses of respective user
+  
+  constructor(private route: ActivatedRoute) { }
+  ngOnInit() {
+    this.route.queryParams
+      .subscribe(params => {
+        this.userID = params['userID']; 
+      }
+    );
+  }
+
+
   displayedColumns: string[] = ['position', 'course_name', 'start_date', 'academic_year', 'batchstrength'];
-  dataToDisplay = [...ELEMENT_DATA];
+  dataToDisplay = this.getDataforUser(this.userID);  //34 is just static number given 
+                                                     //need to fetch this ID from url queryparam
 
   dataSource = new ExampleDataSource(this.dataToDisplay);
-
+  getDataforUser(userID: number){
+      console.log("getting data for User with userID" + userID)
+      //you actually need to go DB and fetch the data up for perticular instructor
+      //as of now just returning static data
+      return [...ELEMENT_DATA]
+  }
   addData() {
     const randomElementIndex = Math.floor(Math.random() * ELEMENT_DATA.length);
     this.dataToDisplay = [...this.dataToDisplay, ELEMENT_DATA[randomElementIndex]];
