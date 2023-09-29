@@ -1,0 +1,8 @@
+1.Add proper values in form which we created for Adding courses for instructor
+    1.1; instructor should be able to see data/actions for each course , 
+         on clicking perticular row, dialog should be opened
+
+2.If User is learner hide the Add course button and introduce new butoon subscribe course
+3.after clicking on subscribe , learner should be able to all courses from all instructors.
+4.learner should be able to select course and subscribe to it.
+5.create one directory for input Components and create component for input text, checkbox etc

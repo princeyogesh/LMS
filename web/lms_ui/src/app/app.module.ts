@@ -22,6 +22,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {MatTabsModule} from '@angular/material/tabs';
 import { NavTabseComponent } from './navtabs/navtabs.component';
 import { CoursetableComponent } from './navtabs/coursetable/coursetable.component';
+import { AddNewCourseExpFormComponent } from './navtabs/coursetable/add-new-course-exp-form/add-new-course-exp-form.component';
 
 
 const routes: Routes = [
@@ -46,6 +47,7 @@ const routes: Routes = [
     LearnerComponent,
     
     
+    
   ],
   imports: [
     BrowserModule,
@@ -62,6 +64,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes, { enableTracing: true }),
     NavTabseComponent,
     CoursetableComponent,
+    AddNewCourseExpFormComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
