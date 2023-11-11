@@ -1,2 +1,6 @@
 This file will will have readme content for src folder
-have two components 1 for backend in Go lang.
+We will create different microservices of backend here
+- UserService
+- ClassRoomService
+- ExamService
+- QuestionService
