@@ -1,7 +1,6 @@
 package userservice
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 )
@@ -14,7 +13,7 @@ func (s1 *Student) getID() string {
 // //////Setting ID for student
 func (s1 *Student) setID(id string) {
 	s1.User.ID = id
-	fmt.Println("setting ID for student")
+	log.Println("setting ID for student")
 }
 
 // //////Getting Name of student
@@ -25,17 +24,17 @@ func (s1 *Student) getName() string {
 // //////Setting Name for student
 func (s1 *Student) SetName() {
 	s1.User.Type = "Student"
-	fmt.Println("setting name for student")
+	log.Println("setting name for student")
 }
 
 // //////Getting  Type for student
 func (s1 *Student) getType() string {
-	return s1.getType()
+	return STUDENT
 }
 
 // //////Setting TYPE for student
 func (s1 *Student) setType() {
-	fmt.Println("setting type for student")
+	log.Println("setting type for student")
 }
 
 // //////Getting UniqueID for student
@@ -65,14 +64,14 @@ func NewStudent(name string) *Student {
 
 // Adding student to DB for persisting user
 func (s1 *Student) AddtoDB() {
-	fmt.Println("added to DB ")
+	log.Println("added to DB ")
 }
 
 // Create the New Student Type and add user in DB
 func CreateStudent(Name string) {
 	s1 := NewStudent(Name)
-	s1.setID(s1.GetUniqueUserID())
-	fmt.Println(s1)
+	s1.setID(s1.GetUniqueUserID()) //This line throws error as of 15Nov since not implemented fully
+	log.Println(s1)
 	s1.AddtoDB()
 
 }
@@ -84,5 +83,5 @@ func CreateStudent(Name string) {
 // once Auth server return userid to browser,
 // browsr will make another query to GetStudent(userid)
 func GetStudent(id string) {
-	fmt.Println("gettu=ing user from ID ", id)
+	log.Println("gettu=ing user from ID ", id)
 }
