@@ -21,3 +21,17 @@ type Question struct {
 	QuestionDifficultyLevel int       //EASY, MEDIUM, HARD, NONE
 	QuestionOptionSet       OptionSet //OPTION SET will be nil if Questiontype is Discriptive
 }
+
+func (q *Question) SetQuestion(typ, question, label string, level int, o_set OptionSet) {
+	q.QuestionID = "Q_1" //get uniqueID need to change this
+	q.Questiontype = typ
+	q.QuestionString = question
+	q.QuestionLabel = label
+	q.QuestionDifficultyLevel = level
+	q.QuestionOptionSet = o_set
+}
+
+// create new empty questions
+func NewQuestion() *Question {
+	return &Question{}
+}
